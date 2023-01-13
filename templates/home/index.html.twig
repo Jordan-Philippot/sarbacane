@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sarbacane suite{% endblock %}
+
+{% block body %}
+{% block javascript %}
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkWtxL2EU0hLe9fQXv7umLECdugu8DJdU&libraries=places&v=weekly"
+    async></script>
+<script>
+
+    function initWindow() {
+        var input = document.getElementById('user_address');
+        var autocomplete = new google.maps.places.Autocomplete(input, { types: ['address'] });
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+        })
+
+        var city = document.getElementById('user_city');
+        var autocomplete = new google.maps.places.Autocomplete(city, { types: ['address'] });
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+        })
+
+    }
+    google.maps.event.addDomListener(window, 'load', initWindow);
+
+</script>
+
+
+{% endblock javascript %}
+<div>
+    <div class="container">
+
+        <section class="illustration-side">
+            <img src="{{ asset('images/logo.svg') }}" alt="Logo Sarbacane Suite" id="logo" />
+            <h1>Vous êtes invité !</h1>
+            <p class="description">
+                Afin de comptabiliser votre inscription à cet événement,
+                veuillez remplir ce formulaire ci-dessous.
+                Il ne vous prendra que quelques secondes <span>!</span>
+                <br />
+                <br />
+                Nous vous fournirons l<span>'</span>ensemble des informations supplémentaires sur
+                l<span>'</span>événement
+                directement par e<span>-</span>mail
+                après confirmation de votre participation.
+            </p>
+            <button>Voir le programme</button>
+        </section>
+
+        <section class="form-side">
+            <div class="container-box">
+                <h2>Inscription Conférence Annuelle</h2>
+                <p class="description">
+                    Le 23 septembre à partir de 18h00
+                    <br />
+                    <b>Grand Palais Paris</b>
+                </p>
+
+                {% for message in app.flashes('success') %}
+                <div class="alert-success">
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                {{ form_start(form, {'action': path('app_home'), 'method': 'POST'}) }}
+
+                <div class="input-group">
+                    <div class="input-form">
+                        {{ form_label(form.lastname) }}
+                        {{ form_widget(form.lastname) }}
+                    </div>
+
+                    <div class="input-form">
+                        {{ form_label(form.firstname) }}
+                        {{ form_widget(form.firstname) }}
+                    </div>
+
+
+                    <div class="input-form">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        <div class="error_message">{{ form_errors(form.email) }}</div>
+                    </div>
+                    <div class="input-form">
+                        {{ form_label(form.phone) }}
+                        {{ form_widget(form.phone) }}
+                        <div class="error_message">{{ form_errors(form.phone) }}</div>
+                    </div>
+
+
+                    <div class="input-form">
+                        {{ form_label(form.company) }}
+                        {{ form_widget(form.company) }}
+                    </div>
+                    <div class="input-form">
+                        {{ form_label(form.address) }}
+                        {{ form_widget(form.address) }}
+                    </div>
+
+                    <div class="input-form">
+                        {{ form_label(form.zipCode) }}
+                        {{ form_widget(form.zipCode) }}
+                        <div class="error_message">{{ form_errors(form.zipCode) }}</div>
+
+                    </div>
+                    <div class="input-form">
+                        {{ form_label(form.city) }}
+                        {{ form_widget(form.city) }}
+                    </div>
+
+                    <div class="input-form">
+                        {{ form_label(form.siren) }}
+                        {{ form_widget(form.siren) }}
+                    </div>
+                    <div class="input-form">
+                        {{ form_label(form.naf) }}
+                        {{ form_widget(form.naf) }}
+                    </div>
+                </div>
+                {{ form_row(form.submit) }}
+
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </div>
+
+    <div class="list-users">
+        <p> Liste des personnes inscrites:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Entreprise</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>Siren</th>
+                    <th>Naf</th>
+                </tr>
+            </thead>
+
+            {% for user in users %}
+            <tr>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.company }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.zipCode }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.siren }}</td>
+                <td>{{ user.naf }}</td>
+
+            </tr>
+
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+        <p> Nombre de personnes inscrites avec un code NAF : {{ countUsersNafCode}} </p>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
