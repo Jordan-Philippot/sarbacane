@@ -50,7 +50,6 @@
             "symfony/runtime": true
         },
         "sort-packages": true,
-        "platform-check": false
     },
     "autoload": {
         "psr-4": {
