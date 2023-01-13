@@ -48,7 +48,6 @@ class HomeController extends AbstractController
             $user->setSiren($data->getSiren());
             $user->setNaf($data->getNaf());
 
-            // dump($data);
             $em = $this->doctrine->getManager();
 
 
@@ -60,7 +59,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        // dump($users);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'user' => $user,
