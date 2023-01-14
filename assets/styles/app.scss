@@ -40,10 +40,11 @@ button {
     .illustration-side {
         background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background.png");
         height: auto;
-        background-size: cover;
+        background-size: 100%;
         background-repeat: no-repeat;
+        background-position: center;
         padding: 70px 45px;
-
+   
         h1 {
             font: normal normal 300 50px/40px $font-poppins;
             letter-spacing: 0px;
@@ -60,7 +61,7 @@ button {
             }
         }
         button {
-            font: normal normal medium 15px/24px Inter;
+            font: normal normal medium 15px/24px $font-inter;
             letter-spacing: 0.3px;
             color: $white;
             border: 2px solid #bf40eb;
@@ -78,12 +79,12 @@ button {
             border-radius: 8px;
             padding: 35px 15px;
             h2 {
-                font: normal normal 300 30px/40px Poppins;
+                font: normal normal 300 30px/40px $font-poppins;
                 letter-spacing: 0px;
                 color: $title;
             }
             .description {
-                font: normal normal bold 20px/30px Poppins;
+                font: normal normal bold 20px/30px $font-poppins;
                 letter-spacing: 0px;
                 color: $title;
                 b {
@@ -92,7 +93,7 @@ button {
             }
             .btn-submit {
                 border-radius: 35px;
-                font: normal normal bold 16px/59px Inter;
+                font: normal normal bold 16px/59px $font-inter;
                 letter-spacing: 0px;
                 color: $lightgrey;
                 border: none;
@@ -168,7 +169,9 @@ button {
         .illustration-side {
             padding: 70px 100px;
             background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background@2x.png");
-
+            background-size: cover;
+            width: auto;
+            background-position: bottom;
         }
         .form-side {
             .container-box {
@@ -184,6 +187,19 @@ button {
     }
 }
 
+@include lg {
+    .container {
+        .illustration-side {
+            padding: 70px 15vw 70px 100px;
+            background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background@2x.png");
+            background-size: cover;
+            width: auto;
+            background-position: bottom;
+        }
+       
+    }
+}
+
 @include xl {
     .container {
         flex-direction: row;
@@ -191,15 +207,13 @@ button {
         .illustration-side {
             width: 40vw;
             padding: 90px 75px;
-
-            // min-height: 100vh;
         }
         .form-side {
             padding: 70px 5vw;
             width: 60vw;
             form {
                 h2 {
-                    font: normal normal 300 30px/22px Poppins;
+                    font: normal normal 300 30px/22px $font-poppins;
                 }
                 .inputs-container {
                     display: flex;
