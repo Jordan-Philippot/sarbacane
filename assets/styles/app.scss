@@ -38,7 +38,7 @@ button {
     text-align: left;
 
     .illustration-side {
-        background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background@2x.png");
+        background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background.png");
         height: auto;
         background-size: cover;
         background-repeat: no-repeat;
@@ -167,6 +167,8 @@ button {
     .container {
         .illustration-side {
             padding: 70px 100px;
+            background: linear-gradient(180deg, #000000 0%, #00000000 100%), url("../images/background@2x.png");
+
         }
         .form-side {
             .container-box {
