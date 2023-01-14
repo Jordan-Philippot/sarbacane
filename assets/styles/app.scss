@@ -44,7 +44,7 @@ button {
         background-repeat: no-repeat;
         background-position: center;
         padding: 70px 45px;
-   
+
         h1 {
             font: normal normal 300 50px/40px $font-poppins;
             letter-spacing: 0px;
@@ -136,7 +136,7 @@ button {
 .list-users {
     margin: 5vw;
     font-family: $font-poppins;
-
+    display: none;
     table,
     tbody,
     thead {
@@ -196,7 +196,6 @@ button {
             width: auto;
             background-position: bottom;
         }
-       
     }
 }
 
@@ -234,5 +233,8 @@ button {
                 }
             }
         }
+    }
+    .list-users {
+        display: block;
     }
 }
